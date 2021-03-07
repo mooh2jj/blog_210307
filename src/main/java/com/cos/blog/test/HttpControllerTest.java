@@ -48,4 +48,13 @@ public class HttpControllerTest {
 	public String putTest(@RequestBody Member m) {
 		return "put 요청"+m.getId() + m.getUsername() + m.getPassword() +m.getEmail();
 	}
+	
+	@GetMapping("/http/lombokTest")
+	public String lombokTest() {
+		Member m1 = new Member(1, "sar", "1234", "email");
+		System.out.println("getter:"+m1.getId());
+		m1.setId(5000);
+		System.out.println("setter:"+m1.getId());
+		return "lombok 요청";
+	}
 }
