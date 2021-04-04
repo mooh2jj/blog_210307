@@ -37,7 +37,7 @@
 
 		$.ajax({
 			type: "post",
-			url: "/blog/api/user/login",
+			url: "/api/user/login",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8"
 			//dataType: "json",	// 요새 안 적어줘도 자동으로 json리턴해줌! 
@@ -46,7 +46,7 @@
 			
 			console.log(resp);
 			alert("로그인이 완료되었습니다.");
-			location.href="/blog";
+			location.href="/";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		});	// ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert 요청
