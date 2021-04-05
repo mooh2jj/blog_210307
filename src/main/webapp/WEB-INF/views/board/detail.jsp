@@ -5,8 +5,15 @@
 <div class="container">
 	<button class="btn btn-secondary" onclick="history.back();">돌아가기</button>
 	<button id="btn-update" class="btn btn-warning">수정</button>
-	<button id="btn-delete" class="btn btn-danger">삭제</button>
+	<c:if test="${board.user.id == principal.user.id}">
+		<button id="btn-delete" class="btn btn-danger">삭제</button>
+	</c:if>
 	<br/><br/>
+	<div>
+		글번호: <span id="id"><i>${board.id}</i></span>
+		작성자: <span><i>${board.user.username}</i></span>
+	</div>
+	<br/>
 	<div>
 		<h3>${board.title}</h3>
 	</div>
@@ -20,33 +27,28 @@
 <script type="text/javascript">
 let index = {
 	init : function(){
-		$("#btn-save").on("click", ()=>{	// function(){}, ()=> 하는 이유 : this를 바인딩하기 위해서
-			this.save();
+		$("#btn-delete").on("click", ()=>{	
+			this.deleteById();
 		});
 	},
 	
-	save : function(){
-		let data = {
-			title: $("#title").val(),
-			content: $("#content").val()
-			
-		}
-
+	
+	deleteById : function(){
+		// var id = $("#id").val(); (x)
+		var id = $("#id").text();
+		
 		$.ajax({
-			type: "post",
-			url: "/api/board",
-			data: JSON.stringify(data),
+			type: "delete",
+			url: "/api/board/"+id,
 			contentType: "application/json; charset=utf-8",
-			dataType: "json",	// 요새 안 적어줘도 자동으로 json리턴해줌! 
-
+			dataType: "json"
 		}).done(function(resp){
-			//alert(resp);
 			console.log(resp);
-			alert("글쓰기가 완료되었습니다!!");
+			alert("삭제가 완료되었습니다!!");
 			location.href="/";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
-		});	// ajax 통신을 이용해서 3개의 데이터를 json으로 변경하여 insert 요청
+		});	
 	}
 }
 
