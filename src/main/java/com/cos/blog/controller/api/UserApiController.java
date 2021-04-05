@@ -31,6 +31,7 @@ public class UserApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	
+	// 스프링 시큐리티가 가로채기 하기 때문에 쓸 필요 x => SecurityConfig
 //	/blog/api/user/login
 	// 전통적 방식의 로그인 방법
 //	@PostMapping("/api/user/login")

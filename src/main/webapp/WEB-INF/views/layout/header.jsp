@@ -5,9 +5,6 @@
 
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var="principal"/>
-<!-- 	<script>
-		alert("로그인이 된 사용자입니다.");
-	</script> -->
 </sec:authorize>
 
 <!DOCTYPE html>
@@ -22,7 +19,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>${principal}</h1>
+	<%-- <h1>${principal}</h1> --%>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="/">dsg게시판</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
