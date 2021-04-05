@@ -41,7 +41,7 @@ let index = {
 
 		$.ajax({
 			type: "post",
-			url: "/api/user",
+			url: "/auth/joinProc",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8"
 			//dataType: "json",	// 요새 안 적어줘도 자동으로 json리턴해줌! 
@@ -49,7 +49,7 @@ let index = {
 		}).done(function(resp){
 			//alert(resp);
 			console.log(resp);
-			alert("회원가입이 완료되었습니다.");
+			alert("회원가입이 완료되었습니다!!");
 			location.href="/";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
