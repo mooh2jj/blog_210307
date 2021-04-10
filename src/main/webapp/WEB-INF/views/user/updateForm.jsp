@@ -35,6 +35,7 @@ let index = {
 		//alert("user의 update함수 호출됨");
 		let data = {
 			id: $("#id").val(),
+			username: $("#username").val(),
 			password: $("#password").val(),
 			email: $("#email").val()
 			
