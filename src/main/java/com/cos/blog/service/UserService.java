@@ -30,14 +30,33 @@ public class UserService {
 //		return -1;
 //	}
 	@Transactional
-	public void 회원가입(User user) {
+	public int 회원가입(User user) {
 		System.out.println("회원가입 해쉬진입");
 		String rawPassword = user.getPassword(); //1234 원문
 		String ecnPassword = encoder.encode(rawPassword); // 해쉬화
 		user.setPassword(ecnPassword);
 		user.setRole(RoleType.USER);
-		userRepository.save(user);
+		try {
+			userRepository.save(user);
+			return 1;
+		} catch (Exception e) {
+			return -1;
+		}
 	
+	}
+	
+	@Transactional(readOnly = true)
+	public User 회원찾기(String username) {
+		
+		User user = userRepository.findByUsername(username).orElseGet(()->{
+			return new User();
+		});
+		return user;
+	}
+	
+	public void 회원수정(User user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 //	@Transactional(readOnly = true)		// select 할 때 트랜잭션 시작, 서비스 종료시에 트랜잭션 종료 (정합성)
