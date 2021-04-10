@@ -46,7 +46,8 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
 	
-	private String oauth; // kakao, google
+	@Column(nullable = false, length = 100)
+	private String oauth; // kakao, google 으로 로그인한 사람인지 구분자
 	
 	@CreationTimestamp	// 시간이 자동 입력
 	private Timestamp createDate;

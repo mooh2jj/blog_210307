@@ -33,10 +33,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UserController {
 
 	@Value("${cos.key}")
-	private String cosKey;
+	private String cosKey;		// cosKey 노출되면 바로 로그인되서 망함!
 	
-//	@Autowired
-//	private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	
 	@Autowired
 	private UserService userService;
@@ -146,7 +146,7 @@ public class UserController {
 				.username(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId())
 				.password(cosKey)
 				.email(kakaoProfile.getKakao_account().getEmail())
-				.oauth("kakao")
+				.oauth("kakao")		// 카카오 로그인한 사람인지 구분자
 				.build();
 		
 		// 가입자 혹은 비가입자 체크 처리
@@ -158,8 +158,8 @@ public class UserController {
 		}
 		System.out.println("자동 로그인을 진행합니다.");
 		// 로그인 처리
-//		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), cosKey));
-//		SecurityContextHolder.getContext().setAuthentication(authentication);
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), cosKey));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		
 //		test용 return
