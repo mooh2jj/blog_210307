@@ -35,7 +35,7 @@ public class User {
 	@Column(nullable = false, length = 100, unique = true)
 	private String username;	// 아이디
 	
-	@Column(nullable = false, length = 100)	// 123456 => 해쉬(비밀번호 암호화)
+	@Column(nullable = false, length = 100)	// 123456 => 해쉬(비밀번호 암호화)해야 되기때문에 length = 100 잡아줌
 	private String password;
 	
 	@Column(nullable = false, length = 50)
@@ -46,8 +46,7 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
 	
-	@Column(nullable = false, length = 100)
-	private String oauth; // kakao, google 으로 로그인한 사람인지 구분자
+	private String oauth; // kakao, google 으로 로그인한 사람인지 구분자 null이어도 상관없기에 @Column 안쓰는 거
 	
 	@CreationTimestamp	// 시간이 자동 입력
 	private Timestamp createDate;

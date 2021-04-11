@@ -10,7 +10,7 @@ public class TempControllerTest {
 	public String tempHome() {
 		System.out.println("tempHome()");
 		// 파일리턴 기본경로: src/main/resources/static, but jsp는 안돼!
-		// 리턴명 : /home.html
+		// 리턴명 : /home.html 앞에 '/' 붙여줘야 돼!
 		// => 풀경로 : src/main/resources/static/home.html
 		// static은 브라우저가 인식할 수 있는 파일만 넣는 거! html, img, css
 //		There was an unexpected error (type=Not Found, status=404).
